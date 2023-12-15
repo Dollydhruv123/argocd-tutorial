@@ -1,16 +1,18 @@
+Service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
   labels:
-    run: nginx
+    app: nginx
+  name: nginx
+  namespace: argocd
 spec:
-  type: NodePort
   ports:
-  - port: 8080
-    targetPort: 80
+  - port: 80
     protocol: TCP
-    name: http
+    targetPort: 80
   selector:
-    run: nginx
+    app: nginx
+  type: LoadBalancer
+
 
