@@ -1,20 +1,21 @@
+Deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: nginx
   name: nginx
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      run: nginx
+      app: nginx
   template:
     metadata:
       labels:
-        run: nginx
+        app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx
-        ports:
-          - containerPort: 80
-        imagePullPolicy: IfNotPresent
+      - image: nginx
+        name: nginx
+
